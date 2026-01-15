@@ -95,6 +95,6 @@ class World:
                     if self.grid[nx][ny] == "|":
                         continue
                     if self.distance_map[nx][ny] is None:
-                        # Atualiza distância e adiciona à fila
+                        # Atualiza distância e adiciona à file
                         self.distance_map[nx][ny] = dist + 1
                         q.append((nx, ny))

@@ -104,7 +104,7 @@ def run_maze(world):
         if all_done:
             time.sleep(1)
 
-            print("\n--- Resultados da Simulação ---")
+            print("\nResultados da Simulação")
             for agent in world.agents:
 
                 usados = agent.max_moves - agent.moves_left
@@ -120,7 +120,6 @@ def run_maze(world):
     pygame.quit()
 
 
-# ---------------------------------------------------------
 def main():
     world = World()
 

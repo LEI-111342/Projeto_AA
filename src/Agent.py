@@ -16,7 +16,7 @@ class AgentBase:
         return self.moves_left > 0
 
     def __repr__(self):
-        # Representação do agente como seu nome
+        # Representação do agente como o seu nome
         return f"{self.name}"
 
 

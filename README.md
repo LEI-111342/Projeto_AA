@@ -2,7 +2,7 @@
 
 # Créditos
 ### Pedro Correia 111342 
-### José Gil
+### José Gil 87711
 ### Ambos estudantes do Instituto Universitário de Lisboa aka ISCTE
 
 # Descrição 

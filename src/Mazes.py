@@ -20,9 +20,9 @@ def load_maze(world, maze_id):
         for x, y in walls:
             world.place_wall(x, y)
 
-        world.place(AgentRandom(0, 4))  # canto superior esquerdo
-        world.place(AgentFollower(0, 2))  # topo, centro-esquerda
-        world.place(LeftAgent(0, 0))  # meio inferior esquerdo
+        world.place(AgentRandom(0, 4))
+        world.place(AgentFollower(0, 2))
+        world.place(LeftAgent(0, 0))
 
         world.compute_distance_map()
 
@@ -31,7 +31,6 @@ def load_maze(world, maze_id):
         world.place_completion(5, 1)
 
         walls = [
-            # bloco superior esquerdo
             (0,1),(0,3),(0,5),(0,6),(2,1),(2,2),
             (2, 3),(2,4),(2,5),(3,0),(4,0),(4,1),
             (4, 2),(4,3),(4,5),(5,0),(5,2),(5,4),

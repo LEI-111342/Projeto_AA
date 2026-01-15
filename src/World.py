@@ -28,7 +28,6 @@ class World:
         self.completion = None
         self.distance_map = None
 
-    # --------------------------------------------------------
     def reset(self):
         # Reseta o mundo para um grid vazio e limpa agentes/completion
         self.grid = [['.' for _ in range(World.cols)] for _ in range(World.rows)]
@@ -36,35 +35,32 @@ class World:
         self.completion = None
         self.distance_map = None
 
-    # --------------------------------------------------------
     def place(self, obj):
         # Coloca um objeto (agente ou completion) no grid
         if self.grid[obj.x][obj.y] == '.':
             self.grid[obj.x][obj.y] = obj.name
             from Agent import AgentBase
             if isinstance(obj, AgentBase):
-                self.agents.append(obj)  # adiciona agente à lista
+                self.agents.append(obj)
             elif isinstance(obj, Completion):
-                self.completion = obj  # define completion
-
+                self.completion = obj
     def place_wall(self, x, y):
         # Coloca uma parede na posição (x, y)
         self.grid[x][y] = "|"
 
     def place_completion(self, x, y):
-        # Coloca a meta na posição (x, y)
+        # Coloca o farol na posição (x, y)
         self.completion = Completion(x, y)
         self.grid[x][y] = "*"
 
-    # --------------------------------------------------------
     def is_valid_move(self, x, y):
-        # Verifica se a posição (x, y) é válida para mover (não fora do grid e não parede)
+        # Verifica se a posição (x, y) é válida para mover
         if 0 <= x < self.rows and 0 <= y < self.cols:
             return self.grid[x][y] != "|"
         return False
 
     def move_agent_to(self, agent, x, y):
-        # Move um agente para uma nova posição (x, y)
+        # Move o agente para a posição
         if (agent.x, agent.y) != (self.completion.x, self.completion.y):
             self.grid[agent.x][agent.y] = "."
 
@@ -75,7 +71,6 @@ class World:
         if (x, y) != (self.completion.x, self.completion.y):
             self.grid[x][y] = agent.name
 
-    # --------------------------------------------------------
     def compute_distance_map(self):
         # Calcula a distância mínima de cada célula até a completion usando BFS
         if not self.completion:
@@ -98,7 +93,7 @@ class World:
 
                 if 0 <= nx < self.rows and 0 <= ny < self.cols:
                     if self.grid[nx][ny] == "|":
-                        continue  # ignora paredes
+                        continue
                     if self.distance_map[nx][ny] is None:
                         # Atualiza distância e adiciona à fila
                         self.distance_map[nx][ny] = dist + 1

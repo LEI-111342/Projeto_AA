@@ -12,7 +12,7 @@ class Sensor:
             y = agent.y + dy
 
             if not (0 <= x < world.rows and 0 <= y < world.cols):
-                sensors.append(1)  # fora = parede
+                sensors.append(1)
             elif world.grid[x][y] == "|":
                 sensors.append(1)
             elif world.grid[x][y] == "*":

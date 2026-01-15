@@ -4,10 +4,8 @@ import random
 from Agent import AgentEvolver
 
 
-# ---------------------------------------------------------
+
 # Distância de Jaccard entre dois comportamentos
-# Agora comportamento = conjunto de posições visitadas
-# ---------------------------------------------------------
 def jaccard_distance(set1, set2):
     if not set1 and not set2:
         return 0.0
@@ -16,9 +14,7 @@ def jaccard_distance(set1, set2):
     return 1.0 - (intersection / union)
 
 
-# ---------------------------------------------------------
 # Novelty score: média das k menores distâncias
-# ---------------------------------------------------------
 def compute_novelty(current_behavior, archive, k=5):
     if not archive:
         return 1.0
@@ -33,9 +29,6 @@ def compute_novelty(current_behavior, archive, k=5):
     return sum(distances[:k]) / k
 
 
-# ---------------------------------------------------------
-# Classe Evolver
-# ---------------------------------------------------------
 class Evolver:
     def __init__(
         self,
@@ -57,7 +50,7 @@ class Evolver:
         self.N_ARCHIVE_ADD = archive_add
         self.num_steps = num_steps
 
-        # posição inicial (todos começam aqui)
+        # posição inicial
         if world_template.agents:
             self.start_x = world_template.agents[0].x
             self.start_y = world_template.agents[0].y
@@ -65,7 +58,7 @@ class Evolver:
             self.start_x = 0
             self.start_y = 0
 
-        # população inicial (SEM genome_length)
+        # população inicial
         self.population = [
             AgentEvolver(self.start_x, self.start_y)
             for _ in range(self.POP)
@@ -75,17 +68,13 @@ class Evolver:
         self.avg_fitness_history = []
         self.best_paths = []
 
-    # -----------------------------------------------------
     # Seleção por torneio (fitness combinada)
-    # -----------------------------------------------------
     def select_parent(self):
         tournament = random.sample(self.population, self.TOUR)
         tournament.sort(key=lambda a: a.combined_fitness, reverse=True)
         return tournament[0]
 
-    # -----------------------------------------------------
     # Avaliação da população
-    # -----------------------------------------------------
     def evaluate_population(self):
         total = 0.0
 
@@ -106,9 +95,7 @@ class Evolver:
 
         return total / len(self.population)
 
-    # -----------------------------------------------------
     # Atualização do arquivo de novelty
-    # -----------------------------------------------------
     def update_archive(self):
         self.population.sort(
             key=lambda a: compute_novelty(a.behavior, self.archive),
@@ -118,9 +105,7 @@ class Evolver:
         for i in range(min(self.N_ARCHIVE_ADD, len(self.population))):
             self.archive.append(set(self.population[i].behavior))
 
-    # -----------------------------------------------------
     # Criação da nova geração
-    # -----------------------------------------------------
     def create_new_generation(self):
         self.population.sort(
             key=lambda a: a.combined_fitness,
@@ -149,9 +134,7 @@ class Evolver:
 
         self.population = new_population
 
-    # -----------------------------------------------------
     # Loop principal da evolução
-    # -----------------------------------------------------
     def run(self):
         print("Starting evolution...")
 

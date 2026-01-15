@@ -20,9 +20,7 @@ class AgentBase:
         return f"{self.name}"
 
 
-# ---------------------------------------------------------
 # RANDOM AGENT - move-se de forma aleatoria
-# ---------------------------------------------------------
 class AgentRandom(AgentBase):
     def __init__(self, x, y, name="R"):
         super().__init__(x, y, name)
@@ -45,9 +43,8 @@ class AgentRandom(AgentBase):
                 return
 
 
-# ---------------------------------------------------------
+
 # FOLLOWER AGENT - usa distance_map
-# ---------------------------------------------------------
 class AgentFollower(AgentBase):
     def __init__(self, x, y, name="F"):
         super().__init__(x, y, name)
@@ -79,9 +76,7 @@ class AgentFollower(AgentBase):
             self.moves_left -= 1
 
 
-# ---------------------------------------------------------
-# LEFT-HAND RULE AGENT
-# ---------------------------------------------------------
+# LEFT AGENT - Usa a estratégia de virar à esquerda sempre que possivel
 class LeftAgent(AgentBase):
     def __init__(self, x, y, name="L"):
         super().__init__(x, y, name)
@@ -93,7 +88,7 @@ class LeftAgent(AgentBase):
         if not self.has_moves():
             return
 
-        # PARA se já chegou ao objetivo
+        # Para se já chegou ao objetivo
         if (self.x, self.y) == (world.completion.x, world.completion.y):
             return
 
@@ -113,9 +108,7 @@ class LeftAgent(AgentBase):
                 return
 
 
-# ---------------------------------------------------------
 # EVOLUTIONARY AGENT - aprende o labirinto
-# ---------------------------------------------------------
 from Sensor import Sensor
 import random
 
@@ -171,7 +164,7 @@ class AgentEvolver(AgentBase):
 
             if world.is_valid_move(nx, ny):
                 world.move_agent_to(self, nx, ny)
-                break  # executa só um movimento
+                break
 
         self.behavior.add((self.x, self.y))
         self.path.append((self.x, self.y))

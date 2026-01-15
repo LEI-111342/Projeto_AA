@@ -8,7 +8,6 @@ from Mazes import load_maze
 CELL_SIZE = 40
 FPS = 10
 
-# ---------------------------------------------------------
 def draw_world(screen, world):
     COLOR_EMPTY = (255,255,255)
     COLOR_WALL = (60,60,60)
@@ -43,7 +42,7 @@ def draw_world(screen, world):
                     pygame.draw.rect(screen, COLOR_AGENT, cell_rect)
 
                     # letra do agente
-                    letter = agent.name  # "R", "L", "F" (vamos trocar F por S abaixo)
+                    letter = agent.name
 
                     text_surface = font.render(letter, True, (255,255,255))
                     text_rect = text_surface.get_rect(center=(

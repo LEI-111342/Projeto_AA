@@ -2,7 +2,7 @@
 
 # Créditos
 ### Pedro Correia 111342 
-### José Gil
+### José Gil 87711
 ### Ambos estudantes do Instituto Universitário de Lisboa aka ISCTE
 
 # Descrição 
@@ -25,7 +25,7 @@ lembrar de dar um maze_id unico para todos eles. Depois é mudar o número do ma
 correr os agentes não inteligentes ou na segunda celula do módulo Graphs.ipynb para correr o agente inteligente
 
 ## Como acelerar/abrandar os agentes na interface 
-No início do módulo Simulator existe uma variavel chamada FPS, quanto maior o número mais rapido os agentes mexem-se e 
+No início do módulo Simulator.py existe uma variavel chamada FPS, quanto maior o número mais rapido os agentes mexem-se e 
 vice-versa, note que esta mudança é apenas visual e não afeta o comportamento de nenhum agente.
 
 ## Mudei o codigo mas o Graphs.ipynb continua a utilizar o codigo antigo
